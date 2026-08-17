@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head><title>Aifo API Test</title></head>
+<body style="font-family:sans-serif; padding:20px;">
+  <h2>Aifo Academy - API Test</h2>
+  <b>Password:</b> <input id="pass" value="student1"><br><br>
+  <b>Question:</b> <input id="q" placeholder="Ask anything"><br><br>
+  <button onclick="ask()">Ask AI</button>
+  <h3>Answer:</h3>
+  <p id="ans" style="border:1px solid #ccc; padding:10px;"></p>
+
+<script>
+async function ask() {
+  document.getElementById("ans").innerText = "Thinking...";
+  const res = await fetch("/ask", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      password: document.getElementById("pass").value,
+      question: document.getElementById("q").value
+    })
+  });
+  const data = await res.json();
+  document.getElementById("ans").innerText = data.answer;
+}
+</script>
+</body>
+</html>
