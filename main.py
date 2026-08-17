@@ -26,7 +26,7 @@ def ask(q: str):
             return {"answer": "Error: GEMINI_API_KEY not found in Render Environment"}
         
         genai.configure(api_key=key)
-        model = genai.GenerativeModel('gemini-pro')
+        model = genai.GenerativeModel('gemini-1.5-flash-latest')
         response = model.generate_content("You are Aifo Academy AI tutor from Kisii, Kenya. Answer clearly: " + q)
         return {"answer": response.text}
     
